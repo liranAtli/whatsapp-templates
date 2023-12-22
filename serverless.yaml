@@ -1,0 +1,72 @@
+service: whatsapppush
+frameworkVersion: '3'
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  templatesTableName: Templates
+
+provider:
+  name: aws
+  profile: liranAtli
+  region: eu-west-1
+  runtime: nodejs18.x
+  stage: dev
+  versionFunctions: false # Lock the version of the functions
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.templatesTableName}"
+
+
+
+  environment:
+    DDB_TEMPLATES_TABLE_NAME: ${self:custom.templatesTableName}
+
+
+functions:
+  CreateTemplates:
+    handler: handlers/template.create
+    description: Create a new template
+    events:
+      - http:
+          path: templates
+          method: post
+          cors: true
+  UpdateTemplates:
+    handler: handlers/template.update
+    description: Edit a template
+    events:
+      - http:
+          path: templates/{user_id}/{template_id}
+          method: put
+          cors: true
+  DeleteTemplates:
+    handler: handlers/template.delete
+    description: Delete a template
+    events:
+      - http:
+          path: templates/{user_id}/{template_id}
+          method: delete
+          cors: true
+  DetailsTemplates:
+    handler: handlers/template.details
+    description: Read a template
+    events:
+      - http:
+          path: templates/{user_id}/{template_id}
+          method: get
+          cors: true
+  ListTemplates:
+    handler: handlers/template.list
+    description: Read a template
+    events:
+      - http:
+          path: templates/{user_id}
+          method: get
+          cors: true

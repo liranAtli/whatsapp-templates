@@ -1,0 +1,12 @@
+{
+  "name": "WhatsAppPush",
+  "version": "1.0.0",
+  "main": "handlers/template.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1499.0",
+    "http-status": "^1.7.3",
+    "@hapi/joi": "^17.1.1",
+    "uuid": "^9.0.1"
+  }
+}
