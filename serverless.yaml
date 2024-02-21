@@ -12,16 +12,19 @@ provider:
   runtime: nodejs18.x
   stage: dev
   versionFunctions: false # Lock the version of the functions
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.templatesTableName}"
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.templatesTableName}"
+
 
 
 
@@ -68,5 +71,13 @@ functions:
     events:
       - http:
           path: templates/{user_id}
+          method: get
+          cors: true
+  GetSignedUrl:
+    handler: handlers/upload-url.getSignedUrl
+    description: Read a template
+    events:
+      - http:
+          path: upload-url/{user_id}
           method: get
           cors: true
