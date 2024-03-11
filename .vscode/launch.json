@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Serverless Function",
+            "program": "${workspaceFolder}\\node_modules\\.bin\\sls.cmd",
+            "args": [
+                "invoke",
+                "local",
+                "--function",
+                "GetSignedUrl",
+                "--path",
+                "local-invoke.json"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "protocol": "inspector",
+            "env": {
+                "DDB_TEMPLATES_TABLE_NAME": "Templates",
+                "RECIPIENT_S3_BUCKET_NAME": "whatsapppush-recipient-file-storages-dev"
+            }
+        }
+    ]
+}

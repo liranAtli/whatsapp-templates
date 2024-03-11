@@ -1,0 +1,13 @@
+{
+    "pathParameters": {
+      "user_id": "201"
+    },
+    "queryStringParameters": {
+      "filter": "example"
+    },
+    "httpMethod": "GET",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"key\":\"value\"}"
+  }
