@@ -1,13 +1,13 @@
 {
-    "pathParameters": {
-      "user_id": "201"
-    },
-    "queryStringParameters": {
-      "filter": "example"
-    },
-    "httpMethod": "GET",
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "body": "{\"key\":\"value\"}"
-  }
+  "pathParameters": {
+    "user_id": "201"
+  },
+  "queryStringParameters": {
+    "filter": "example"
+  },
+  "httpMethod": "GET",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"user_id\":\"201\",\"idempotent_key\":\"aabb\",\"message\":\"hello everyone\",\"recipient\":\"a.csv\"}"
+}

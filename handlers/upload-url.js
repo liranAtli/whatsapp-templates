@@ -11,8 +11,6 @@ module.exports.getSignedUrl = async (req, res) => {
   if (!req.body || !req.pathParameters)
     throw new Error(`Missing Parameter ${req.body} or ${req.pathParameters}`);
 
-  console.log(JSON.parse(req.body));
-
   try {
     const { user_id } = req.pathParameters;
 
@@ -33,8 +31,6 @@ module.exports.getSignedUrl = async (req, res) => {
 
     const { error, value } = schema.validate(requestBody);
 
-    console.log("Error: ", error);
-    console.log("Value: ", value);
     if (!error) {
       // Date in yyyy-mm-dd format
       const date = new Date().toJSON().slice(0, 10);

@@ -5,10 +5,13 @@
   "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.515.0",
+    "@aws-sdk/credential-provider-ini": "^3.529.1",
     "@aws-sdk/s3-request-presigner": "^3.515.0",
     "@hapi/joi": "^17.1.1",
     "aws-sdk": "^2.1499.0",
+    "csvtojson": "^2.0.10",
     "http-status": "^1.7.3",
+    "node-xlsx": "^0.23.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
